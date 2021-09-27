@@ -12,6 +12,9 @@ class Rational(n: Int, d: Int):
     Rational(number * that.denom + that.number * denom,
       denom * that.denom)
 
+  def lessThan(that: Rational) =
+    this.number * that.denom < that.number * this.denom
+
 object Main {
   def main(args: Array[String]): Unit = {
     new Rational(1, 2)
