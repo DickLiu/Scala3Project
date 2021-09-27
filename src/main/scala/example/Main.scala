@@ -3,12 +3,17 @@ package example
 class Rational(n: Int, d: Int):
   require(d != 0)
 
-  val number: Int = n
-  val denom: Int = d
+  private val g = gcd(n.abs, d.abs)
+
+  val number: Int = n / g
+  val denom: Int = d / g
 
   def this(n: Int) = this(n, 1) // auxiliary constructor
 
   override def toString: String = s"$n/$d"
+
+  private def gcd(a: Int, b: Int): Int =
+    if b == 0 then a else gcd(b, a % b)
 
   def add(that: Rational): Rational =
     Rational(number * that.denom + that.number * denom,
