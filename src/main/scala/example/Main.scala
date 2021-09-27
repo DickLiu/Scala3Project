@@ -10,14 +10,17 @@ class Rational(n: Int, d: Int):
 
   def this(n: Int) = this(n, 1) // auxiliary constructor
 
-  override def toString: String = s"$n/$d"
+  override def toString: String = s"$number/$denom"
 
   private def gcd(a: Int, b: Int): Int =
     if b == 0 then a else gcd(b, a % b)
 
-  def add(that: Rational): Rational =
+  def +(that: Rational): Rational =
     Rational(number * that.denom + that.number * denom,
       denom * that.denom)
+
+  def *(that: Rational): Rational =
+    Rational(number * that.number, denom * that.denom)
 
   def lessThan(that: Rational) =
     this.number * that.denom < that.number * this.denom
